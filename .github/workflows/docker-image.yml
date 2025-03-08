@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: login to dockerhub
+      run: docker login -u 456789342 -p $DOCKER_PASS
+    - name: build docker image
+      run: docker build -t api .
+    - name: tag docker image
+      run: docker tag api:latest 456789342/ai-project:latest
+    - name: push docker image
+      run: docker push 456789342/ai-project:latest
