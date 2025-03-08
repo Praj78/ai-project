@@ -13,6 +13,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: login to dockerhub
+      env:
+        DOCKER_PASS: ${{secrets.DOCKER_PASS}}
       run: docker login -u 456789342 -p $DOCKER_PASS
     - name: build docker image
       run: docker build -t api .
