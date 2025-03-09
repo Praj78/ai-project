@@ -1,2 +1,1 @@
-# ai-project-docker-aws
-
+# ai-project
