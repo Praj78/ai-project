@@ -1,1 +1,1 @@
-# ai-project-try
+# ai-project
