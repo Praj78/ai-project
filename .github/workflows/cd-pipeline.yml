@@ -1,0 +1,22 @@
+name: CD
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - name: pull Docker image
+      run: sudo docker pull 456789342/ai-project:latest
+    - name: delete old container, if exists
+      run: sudo docker rm -f cicd-project | true
+    - name: run latest container
+      run: sudo docker run --name cicd-project -p 8000:8000 -d 456789342/ai-project:latest
+    
